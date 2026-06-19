@@ -37,6 +37,8 @@ npm run test:data
 npm run test:bdd
 npm run test:smoke
 npm run test:ui
+npm run codegen
+npm run codegen:save
 npm run report
 ```
 
@@ -50,6 +52,7 @@ src/pages/              Page objects
 src/components/         Reusable component objects
 src/utils/              Shared test utilities
 tests/e2e/              Browser end-to-end tests
+tests/e2e/generated/    Reviewed codegen output
 tests/api/              API tests
 tests/accessibility/    Accessibility tests
 tests/bdd/steps/        BDD step definitions
@@ -72,6 +75,24 @@ const rows = readCsv<MyRow>('data/test-data/file.csv', {
 ```
 
 The sample CSV-driven test is `tests/api/todos.csv.api.spec.ts`.
+
+## Playwright Codegen
+
+Use Codegen to discover selectors and bootstrap flows, then refactor the generated code into page objects, components, fixtures, or BDD steps.
+
+```bash
+npm run codegen
+npm run codegen:base
+npm run codegen:save
+npm run codegen:auth
+```
+
+- `codegen` opens the recorder with no starting URL.
+- `codegen:base` opens the recorder at the sample base site.
+- `codegen:save` writes a generated Playwright test to `tests/e2e/generated/codegen.spec.ts`.
+- `codegen:auth` records a login flow and saves storage state to `data/global/storage-state.json`.
+
+Generated tests should be reviewed before keeping them. Prefer resilient role, label, text, and `data-testid` selectors, then move reusable behavior into the framework layers.
 
 ## BDD Workflow
 
