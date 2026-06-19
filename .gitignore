@@ -1,0 +1,16 @@
+node_modules/
+test-results/
+playwright-report/
+allure-results/
+allure-report/
+coverage/
+.env
+.env.*
+!.env.example
+*.log
+dist/
+downloads/
+screenshots/
+videos/
+traces/
+.features-gen/
